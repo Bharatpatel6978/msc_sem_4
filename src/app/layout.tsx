@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./global.css";
+import Provider from "@/Provider";
+
 
 export const metadata: Metadata = {
   title: "SK_MART",
@@ -13,8 +15,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="w-full min-h-screen bg-linear-to-b from-green-100 to-white" >
-        {children}
+      <body className="w-full min-h-screen bg-linear-to-b from-green-50 to-white">
+        <Provider>{children}</Provider>
       </body>
     </html>
   );

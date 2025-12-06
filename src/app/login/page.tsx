@@ -1,10 +1,12 @@
 'use client'
-import React, { useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 import {motion} from "motion/react"
 import { EyeIcon, EyeOff, Key, Leaf, Loader2, Lock, LogIn, Mail, User } from 'lucide-react'
-import { tr } from 'motion/react-client'
+
 import axios from 'axios'
 import { log } from 'console'
+
+import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
 
@@ -14,7 +16,29 @@ const Login = () => {
     const [showPassword,setShowPassword] = useState(false)
     const [loading,setLoading] = useState(false)
     const router  = useRouter()
-   
+    const session = useSession()
+    console.log(session);
+    
+
+   const handleLogin = async (e:FormEvent)=>{
+    e.preventDefault()
+
+    setLoading(true)
+    try{
+        await signIn("credentials",{
+            redirect:false,
+            email,password
+        })
+        router.push("/")
+        console.log(session,"sdfsd");
+        
+        setLoading(false)
+    }catch(error){
+        console.log(error);
+        setLoading(false)
+    }
+
+   }
   return (
     <div className='flex flex-col items-center justify-center min-h-screen px-6 py-10 bg-white relative'>
         <motion.h1 initial={{
@@ -30,7 +54,8 @@ const Login = () => {
         }} className='text-4xl font-extrabold text-green-700 mb-2'>Welcome Back</motion.h1>
         <p className='text-gray-600 mb-8 flex items-center'>Login to SK MART today<Leaf className='w-5 h-5 text-green-600 '/></p>
 
-        <motion.form   initial={{
+        <motion.form  onSubmit={handleLogin}
+          initial={{
             opacity:0
         }}
         animate={{
