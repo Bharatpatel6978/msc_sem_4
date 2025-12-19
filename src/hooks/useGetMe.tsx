@@ -2,6 +2,7 @@
 import { AppDispatch } from '@/redux/store'
 import { setUserData } from '@/redux/userSlice'
 import axios from 'axios'
+import { get } from 'http'
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
@@ -17,7 +18,8 @@ function useGetMe (){
             
         }
     }
-  })
+    getMe()
+  },[dispatch])
 }
 
 export default useGetMe

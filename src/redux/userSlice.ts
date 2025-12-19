@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import mongoose from "mongoose"
-import { act } from "react"
+
 interface IUser{
     _id ?: mongoose.Types.ObjectId
     name:string
@@ -10,7 +10,7 @@ interface IUser{
     role:"user" | "deliveryBoy"| "admin"
 }
 interface IUserSlice{
-    userData:IUser | null
+    userData:IUser | null 
 }
 
 const initialState:IUserSlice ={
