@@ -27,7 +27,7 @@ export interface IOrder{
         latitude: string;
         longitude: string;
     }
-    status: "Pending" | "Confirmed" | "Shipped" | "Out for delivery" | "Delivered" | "Cancelled";
+    status: "pending" | "confirmed" | "shipped" | "out for delivery" | "delivered" | "cancelled";
     createdAt?: Date;
     updatedAt?: Date;
 }
@@ -77,8 +77,8 @@ const orderSchema = new mongoose.Schema<IOrder>({
     },
     status:{
         type: String,
-        enum: ["Pending","Confirmed","Shipped","Out for delivery","Delivered","Cancelled"],
-        default: "Pending",
+        enum: ["pending","confirmed","chipped","out for delivery","delivered","cancelled"],
+        default: "pending",
     },
 
 },{timestamps:true});
