@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { number } from "motion";
 
-interface IOrder{
+export interface IOrder{
     _id?: mongoose.Types.ObjectId;
     user: mongoose.Types.ObjectId;
     items: [
@@ -27,7 +27,7 @@ interface IOrder{
         latitude: string;
         longitude: string;
     }
-    status: "pending" | "confirmed" | "shipped" | "out for delivery" | "delivered" | "cancelled";
+    status: "Pending" | "Confirmed" | "Shipped" | "Out for delivery" | "Delivered" | "Cancelled";
     createdAt?: Date;
     updatedAt?: Date;
 }
@@ -77,8 +77,8 @@ const orderSchema = new mongoose.Schema<IOrder>({
     },
     status:{
         type: String,
-        enum: ["pending","confirmed","shipped","out for delivery","delivered","cancelled"],
-        default: "pending",
+        enum: ["Pending","Confirmed","Shipped","Out for delivery","Delivered","Cancelled"],
+        default: "Pending",
     },
 
 },{timestamps:true});
